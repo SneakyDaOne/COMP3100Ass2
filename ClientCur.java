@@ -35,6 +35,20 @@ public class Client {
                 return cur;
             }
         }
+        for(int i = ServerInfo.size()-2;i> 0;i--){
+            System.out.println("Enter");
+            String [] cur = ServerInfo.get(i).split("\\s+");
+            int running1 = Integer.parseInt(cur[8]);
+            int waiting1 = Integer.parseInt(cur[7]);
+            if(running1 < Integer.parseInt(Largest[8])){
+                System.out.println("Replace");
+                Largest = cur;
+            }
+            if(waiting1 < Integer.parseInt(Largest[7])){
+                Largest = cur;
+            System.out.println("Replace");
+            }
+        }
         return Largest;
     }
 
