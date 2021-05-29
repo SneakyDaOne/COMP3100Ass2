@@ -35,37 +35,6 @@ public class Client {
         return ServerInfo;
     }
 
-    public static Storage getLargest(ArrayList<Storage> ServerInfo){
-        Storage curLargest = new Storage();
-        if(ServerInfo.size() == 1){
-            curLargest = ServerInfo.get(0);
-        }
-        for(int i = 0;i<ServerInfo.size();i++){
-            Storage cur = ServerInfo.get(i);
-            for(int j = i;j<ServerInfo.size();j++){
-                Storage cur2 = ServerInfo.get(j);
-                if(cur2.core > cur.core){
-                    curLargest = cur2;
-                    break;
-                }
-            }
-        }
-        return curLargest;
-    }
-
-    public static void allToLargest(Storage LargestServer, String JobID, PrintWriter pw){
-        pw.println(SCHD + " " + JobID + " " + LargestServer.ID + " " + LargestServer.type);
-        pw.flush();
-    }
-
-    public static String CurJobID(String s){
-        String [] JobInfo;
-        String JobID;
-        JobInfo = s.split("\\s+");
-        JobID = JobInfo[2];
-        System.out.println(JobID);
-        return JobID;
-    }
     public static void ScheduleJob(BufferedReader bf, PrintWriter pw, String S)throws IOException, SocketException{
             String [] JobInfo;
             String [] ServerData;
@@ -83,7 +52,6 @@ public class Client {
             pw.flush();
             for(int i = 0;i<Servers;i++){
                 strCur = bf.readLine();
-                // System.out.println("Server : " + strCur);
                 if(!strCur.equals(DOT)){
                     ServerInfo.add(strCur);
                 }
@@ -127,27 +95,6 @@ public class Client {
 
         str = bf.readLine();
         System.out.println("server : " + str);
-        // Job = str;
-        // System.out.println("server : " + str);
-
-        // pw.println(GET);
-        // pw.flush();
-
-        // while(!str.equals(DOT)){
-        //     str = bf.readLine();
-        //     System.out.println("Server : " + str);
-        //     pw.println(OK);
-        //     pw.flush();
-        //     if(!str.equals(DOT)&&!str.contains(DATA)){
-        //         Servers.add(str);
-        //     }
-        // }
-
-        // ServerInfo = Separate(Servers);
-
-        // LargestServer = getLargest(ServerInfo);
-
-        // str = Job;
         System.out.println(str);
         while(!str.contains(NONE)){
             if(str.contains(JCPL)){
@@ -159,27 +106,16 @@ public class Client {
                 pw.flush();
             }
             else if(str.contains(JOBN)){
-               // System.out.println("Entry");
-                // JobID = CurJobID(str);
                 ScheduleJob(bf, pw, str);
-               // System.out.println("EXIT");
-                // allToLargest(LargestServer,JobID, pw);
-               // str = bf.readLine();
-               // System.out.println("server : " + str);
             }
             else if(str.contains(JOBP)){
-              //  System.out.println("Entry2");
                 ScheduleJob(bf, pw, str);
-               // System.out.println("EXIT2");
-               // str = bf.readLine();
-               // System.out.println("server : " + str);
             }
             if(str.equals(NONE)){
                 pw.flush();
                 break;
             }
             str = bf.readLine();
-           // System.out.println(str);
             pw.flush();
         }
         pw.println(QUIT);
