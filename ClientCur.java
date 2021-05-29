@@ -18,22 +18,6 @@ public class Client {
     private static String DATA = "DATA";
     private static String ERR = "ERR";
     private static String GETC = "GETS Capable";;
-
-    public static ArrayList<Storage> Separate(ArrayList<String> Servers){
-        String [] Info;
-        ArrayList<Storage> ServerInfo = new ArrayList<Storage>();
-        for (int i = 0; i<Servers.size(); i++){
-            Storage cur = new Storage();
-            Info = Servers.get(i).split("\\s+");
-            cur.ID = Info[0];
-            cur.type = Integer.parseInt(Info[1]);
-            cur.core = Integer.parseInt(Info[4]);
-            cur.memory = Integer.parseInt(Info[5]);
-            cur.disk = Integer.parseInt(Info[6]);
-            ServerInfo.add(cur);
-        }
-        return ServerInfo;
-    }
     
     public static String [] ServerState(ArrayList<String> ServerInfo){
         int max = ServerInfo.size();
