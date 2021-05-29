@@ -23,7 +23,7 @@ public class Client {
         int max = ServerInfo.size();
         String large = ServerInfo.get(max-1);
         String [] Largest = large.split("\\s+");
-        for(int i = 0; i< ServerInfo.size();i++){
+        for(int i = ServerInfo.size()-1; i>0;i--){
             String [] cur = ServerInfo.get(i).split("\\s+");
             Integer running = Integer.parseInt(cur[8]);
             Integer waiting = Integer.parseInt(cur[7]);
