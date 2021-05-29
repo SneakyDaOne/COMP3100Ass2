@@ -34,6 +34,25 @@ public class Client {
         }
         return ServerInfo;
     }
+    
+    public static String [] ServerState(ArrayList<String> ServerInfo){
+        int max = ServerInfo.size();
+        String large = ServerInfo.get(max-1);
+        String [] Largest = large.split("\\s+");
+        for(int i = 0; i< ServerInfo.size();i++){
+            String [] cur = ServerInfo.get(i).split("\\s+");
+            Integer running = Integer.parseInt(cur[8]);
+            Integer waiting = Integer.parseInt(cur[7]);
+            System.out.println(cur[2]);
+            if(running == 0){
+                return cur;
+            }
+            if(waiting == 0){
+                return cur;
+            }
+        }
+        return Largest;
+    }
 
     public static void ScheduleJob(BufferedReader bf, PrintWriter pw, String S)throws IOException, SocketException{
             String [] JobInfo;
