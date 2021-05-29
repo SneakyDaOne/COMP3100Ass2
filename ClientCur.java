@@ -57,8 +57,8 @@ public class Client {
     public static void ScheduleJob(BufferedReader bf, PrintWriter pw, String S)throws IOException, SocketException{
             String [] JobInfo;
             String [] ServerData;
-            ArrayList<String> ServerInfo = new ArrayList<String>();
             String strCur;
+            ArrayList<String> ServerInfo = new ArrayList<String>();
             ArrayList<Storage> FirstSer = new ArrayList<Storage>();
             JobInfo = S.split("\\s+");
             pw.println(GETC + " " + JobInfo[4] + " " + JobInfo[5] + " " + JobInfo[6]);
@@ -66,7 +66,6 @@ public class Client {
             strCur = bf.readLine();
             ServerData = strCur.split("\\s+");
             Integer Servers = Integer.parseInt(ServerData[1]);
-            System.out.println(strCur);
             pw.println(OK);
             pw.flush();
             for(int i = 0;i<Servers;i++){
@@ -77,7 +76,7 @@ public class Client {
             }
             pw.println(OK);
             pw.flush();
-            String [] temp = ServerInfo.get(1).split("\\s+");
+            String [] temp = ServerState(ServerInfo);
             pw.println(SCHD + " " + JobInfo[2] + " " + temp[0] + " " + temp[1]);
             pw.flush();
     }
