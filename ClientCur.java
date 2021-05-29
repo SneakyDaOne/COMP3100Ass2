@@ -72,12 +72,6 @@ public class Client {
         BufferedReader bf = new BufferedReader(in);
         PrintWriter pw = new PrintWriter(s.getOutputStream());
         String str = "";
-        String Largest = "";
-        String Job = "";
-        String JobID = "";
-        ArrayList<String> Servers = new ArrayList<String>();
-        ArrayList<Storage> ServerInfo = new ArrayList<Storage>();
-        Storage LargestServer = new Storage();
         String name = System.getProperty("user.name");
 
         pw.println(HELO);
