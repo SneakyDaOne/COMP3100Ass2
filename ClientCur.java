@@ -66,9 +66,9 @@ public class Client {
         System.out.println(JobID);
         return JobID;
     }
-
     public static void ScheduleJob(BufferedReader bf, PrintWriter pw, String S)throws IOException, SocketException{
             String [] JobInfo;
+            String [] ServerData;
             ArrayList<String> ServerInfo = new ArrayList<String>();
             String strCur;
             ArrayList<Storage> FirstSer = new ArrayList<Storage>();
@@ -76,18 +76,20 @@ public class Client {
             pw.println(GETC + " " + JobInfo[4] + " " + JobInfo[5] + " " + JobInfo[6]);
             pw.flush();
             strCur = bf.readLine();
+            ServerData = strCur.split("\\s+");
+            Integer Servers = Integer.parseInt(ServerData[1]);
             System.out.println(strCur);
             pw.println(OK);
             pw.flush();
-            while(!strCur.equals(DOT)){
+            for(int i = 0;i<Servers;i++){
                 strCur = bf.readLine();
-                System.out.println("Server : " + strCur);
+                // System.out.println("Server : " + strCur);
                 if(!strCur.equals(DOT)){
                     ServerInfo.add(strCur);
-                    pw.println(OK);
-                    pw.flush();
                 }
             }
+            pw.println(OK);
+            pw.flush();
             String [] temp = ServerInfo.get(1).split("\\s+");
             pw.println(SCHD + " " + JobInfo[2] + " " + temp[0] + " " + temp[1]);
             pw.flush();
@@ -157,27 +159,27 @@ public class Client {
                 pw.flush();
             }
             else if(str.contains(JOBN)){
-                System.out.println("Entry");
+               // System.out.println("Entry");
                 // JobID = CurJobID(str);
                 ScheduleJob(bf, pw, str);
-                System.out.println("EXIT");
+               // System.out.println("EXIT");
                 // allToLargest(LargestServer,JobID, pw);
-                str = bf.readLine();
-                System.out.println("server : " + str);
+               // str = bf.readLine();
+               // System.out.println("server : " + str);
             }
             else if(str.contains(JOBP)){
-                System.out.println("Entry2");
+              //  System.out.println("Entry2");
                 ScheduleJob(bf, pw, str);
-                System.out.println("EXIT2");
-                str = bf.readLine();
-                System.out.println("server : " + str);
+               // System.out.println("EXIT2");
+               // str = bf.readLine();
+               // System.out.println("server : " + str);
             }
             if(str.equals(NONE)){
                 pw.flush();
                 break;
             }
             str = bf.readLine();
-            System.out.println(str);
+           // System.out.println(str);
             pw.flush();
         }
         pw.println(QUIT);
