@@ -21,7 +21,7 @@ public class Client {
     
     public static String [] ServerState(ArrayList<String> ServerInfo){
         int max = ServerInfo.size();
-        String large = ServerInfo.get(max-1);
+        String large = ServerInfo.get(max-1);   
         String [] Largest = large.split("\\s+");
         for(int i = ServerInfo.size()-1; i>0;i--){
             String [] cur = ServerInfo.get(i).split("\\s+");
@@ -104,8 +104,6 @@ public class Client {
         pw.flush();
 
         str = bf.readLine();
-        System.out.println("server : " + str);
-        System.out.println(str);
         while(!str.contains(NONE)){
             if(str.contains(JCPL)){
                 pw.println(REDY);
