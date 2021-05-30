@@ -41,12 +41,10 @@ public class Client {
             int running1 = Integer.parseInt(cur[8]);
             int waiting1 = Integer.parseInt(cur[7]);
             if(running1 < Integer.parseInt(Largest[8])){
-                System.out.println("Replace");
                 Largest = cur;
             }
             if(waiting1 < Integer.parseInt(Largest[7])){
                 Largest = cur;
-            System.out.println("Replace");
             }
         }
         return Largest;
